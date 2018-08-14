@@ -1,9 +1,7 @@
-import uuid from 'uuid/v1';
+import uuid from 'uuid/v4';
 
 export const categoryCreate = category => {
   category.id = uuid();
-  category.name = '';
-  category.budget = '';
   category.timeStamp = new Date();
   category.editing = false;
   return {
