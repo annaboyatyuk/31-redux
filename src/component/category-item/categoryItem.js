@@ -10,23 +10,19 @@ class CategoryItem extends React.Component {
     editing: false,
   }
 
-  handleDouble = (e) => {
-    e.preventDefault();
-    this.setState({ editing: true })
+  handleDouble = (id) => {
+    this.setState({ editing: true, id })
   }
 
-  updateNote = (note) => {
+  updateCategory = (category) => {
     this.setState({
       editing: false
     });
-    this.props.onComplete(note);
+    this.props.onComplete(category);
   }
 
   render() {
 
-    console.log('AAAAA', this.props);
-
-    if (this.state.editing) {
       return (
         <React.Fragment>
 
@@ -35,42 +31,22 @@ class CategoryItem extends React.Component {
               <li id={item.id} key={item.id}>
                 <h2>{item.name}</h2>
 
-                <p onDoubleClick={this.handleDouble} >{item.budget}</p>
+                <p onDoubleClick={() => this.handleDouble(item.id)} >${item.budget}</p>
 
                 <button onClick={() => this.props.destroy(item)}>X</button>
+
+                {this.state.id === item.id ? <CategoryForm  buttonText='UPDATE' onComplete={this.updateCategory} item={item}/> : null}
+                
               </li>
             ))}
           </ul>
 
-          <CategoryForm buttonText='UPDATE' onComplete={this.updateNote}/>
 
         </React.Fragment>
       )
     }
-
-
-    return (
-      <React.Fragment>
-
-
-        <ul>
-          {this.props.category.map(item => (
-            <li id={item.id} key={item.id}>
-              <h2>{item.name}</h2>
-
-              <p onDoubleClick={this.handleDouble} >{item.budget}</p>
-
-              <button onClick={() => this.props.destroy(item)}>X</button>
-            </li>
-          ))}
-        </ul>
-
-      </React.Fragment>
-    );
-
   }
 
-}
 
 const mapStateToProps = state => ({
   category: state,

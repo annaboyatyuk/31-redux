@@ -23,3 +23,4 @@ export const categoryDestroy = category => ({
 export const categoryReset = () => ({
   type: 'CATEGORY_RESET',
 });
+
