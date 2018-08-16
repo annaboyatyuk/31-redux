@@ -3,11 +3,11 @@ import CategoryForm from '../category-form/categoryForm';
 import CategoryItem from '../category-item/categoryItem';
 import { connect } from 'react-redux';
 
+import './dashboard.css';
+
 import {categoryCreate, categoryUpdate, categoryDestroy, categoryReset} from '../../action/categoryActions';
 
 class Dashboard extends Component {
-
-
 
   render() {
     return (
